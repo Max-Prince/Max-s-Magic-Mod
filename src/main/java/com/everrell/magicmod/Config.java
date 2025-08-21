@@ -1,4 +1,4 @@
-package com.maxsmagic.magicmod;
+package com.everrell.magicmod;
 
 import java.util.List;
 import java.util.Set;
