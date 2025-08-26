@@ -10,7 +10,7 @@ public class ModItems {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MaxsMagicMod.MODID);
     public static final DeferredItem<Item> WAND =
-            ITEMS.register("wand", ()->new Item(new Item.Properties()));
+            ITEMS.register("wand.json", ()->new Item(new Item.Properties()));
 
 
     public static void register(IEventBus eventBus)

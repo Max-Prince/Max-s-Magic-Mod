@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting.shaped",
+  "pattern":
+          [
+            "x ",
+            " a"
+          ],
+  "key":
+  {
+    "x":
+    {
+      "type": "minecraft:amethyst_shard"
+    },
+    "a":
+    {
+      "item": "minecraft:stick"
+    }
+  },
+  "result":
+  {
+    "item": "maxsmagicmod.wand",
+    "count": 1
+  }
+}
