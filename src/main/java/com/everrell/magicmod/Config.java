@@ -11,6 +11,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
+
+import static com.everrell.magicmod.api.registry.Spell.SPELL_REGISTRY;
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Neo's config APIs
@@ -59,5 +62,9 @@ public class Config
         items = ITEM_STRINGS.get().stream()
                 .map(itemName -> BuiltInRegistries.ITEM.getValue(ResourceLocation.parse(itemName)))
                 .collect(Collectors.toSet());
+    }
+    @SubscribeEvent // on the mod event bus
+    public static void registerRegistries(NewRegistryEvent event) {
+        event.register(SPELL_REGISTRY);
     }
 }

@@ -1,6 +1,7 @@
 package com.everrell.magicmod.item;
 
 import com.everrell.magicmod.MaxsMagicMod;
+import com.everrell.magicmod.item.advanceditems.WandItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -11,7 +12,8 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MaxsMagicMod.MODID);
     public static final DeferredItem<Item> WAND =
             ITEMS.register("wand.json", ()->new Item(new Item.Properties()));
-
+    public static final DeferredItem<Item> WAND2 = ITEMS.register(name: "breakingwand",
+            () -> new WandItem(new Item.Properties().durability(maxDamage: 32)))
 
     public static void register(IEventBus eventBus)
     {
