@@ -8,8 +8,8 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
-public class WandItem extends Item {
-    public WandItem(Properties properties){
+public class BreakingWandItem extends Item {
+    public BreakingWandItem(Properties properties){
         super(properties);
     }
 
