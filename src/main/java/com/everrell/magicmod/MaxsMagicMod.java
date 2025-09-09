@@ -36,6 +36,7 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 import java.util.function.Supplier;
 
+import static com.everrell.magicmod.api.attribute.AttributeRegistry.ATTRIBUTES;
 import static net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion.MOD_ID;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -87,7 +88,8 @@ public class MaxsMagicMod
         ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
-
+        //registering Attributes?
+        ATTRIBUTES.register(modEventBus);
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MaxsMagicMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
