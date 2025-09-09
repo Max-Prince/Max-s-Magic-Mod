@@ -46,7 +46,7 @@ public class ManaData {
 
     //mana
 
-    private static float mana;
+    public static float mana;
 
     public float getMana() {
         return mana;

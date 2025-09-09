@@ -1,5 +1,7 @@
 package com.everrell.magicmod.item.advanceditems;
 
+import com.everrell.magicmod.api.capabilities.magic.SyncedSpellData;
+import com.everrell.magicmod.api.mana.ManaData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -29,6 +31,7 @@ public class SacrificialDaggerItem extends Item {
     public InteractionResult use(Level p_41190_, Player p_41191_, InteractionHand p_41192_) {
         ItemStack itemstack = p_41191_.getItemInHand(p_41192_);
         p_41190_.playSound((Player) null, p_41191_.getX(), p_41191_.getY(), p_41191_.getZ(), SoundEvents.PLAYER_HURT, SoundSource.NEUTRAL, 0.5F, 0.4F / (p_41190_.getRandom().nextFloat() * 0.4F + 0.8F));
+
         /*if (p_41190_ instanceof ServerLevel serverlevel) {
 
         }

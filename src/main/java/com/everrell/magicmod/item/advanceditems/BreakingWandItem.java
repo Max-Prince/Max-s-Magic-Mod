@@ -3,10 +3,13 @@ package com.everrell.magicmod.item.advanceditems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import com.everrell.magicmod.api.mana.ManaData;
 
 public class BreakingWandItem extends Item {
     public BreakingWandItem(Properties properties){
@@ -20,6 +23,7 @@ public class BreakingWandItem extends Item {
         if (!level.isClientSide()){
             level.destroyBlock(context.getClickedPos(), true);
             level.playSound(null, context.getClickedPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS);
+
 
         }
 
