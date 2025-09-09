@@ -9,15 +9,22 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
+import net.minecraft.client.gui.screens.Overlay;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.player.Player;
 import java.lang.Math;
+import java.util.function.Function;
+
+
 import static com.everrell.magicmod.api.attribute.AttributeRegistry.MAX_MANA;
 
 public class ManaBarOverlay implements LayeredDraw.Layer {
     public static final ManaBarOverlay instance = new ManaBarOverlay();
 
     public final static ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(MaxsMagicMod.MODID, "gui/textures/icons.png");
+
+
 
     public enum Anchor {
         Hunger,
@@ -46,11 +53,10 @@ public class ManaBarOverlay implements LayeredDraw.Layer {
     static final int TEXT_COLOR = ChatFormatting.AQUA.getColor();
 
     public void render(GuiGraphics guiHelper, DeltaTracker deltaTracker) {
+
         var player = Minecraft.getInstance().player;
         var screenWidth = guiHelper.guiWidth();
         var screenHeight = guiHelper.guiHeight();
-        if (!shouldShowManaBar(player))
-            return;
 
         int maxMana = (int) player.getAttributeValue(MAX_MANA);
         int mana = ClientMagicData.getPlayerMana();
@@ -62,14 +68,23 @@ public class ManaBarOverlay implements LayeredDraw.Layer {
         barX = getBarX(anchor, screenWidth) + configOffsetX;
         barY = getBarY(anchor, screenHeight, Minecraft.getInstance().gui) - configOffsetY;
 
-
-        guiHelper.fill(barX, barY, barX+mana, barY+50, 100);
-
         int imageWidth = anchor == Anchor.XP ? XP_IMAGE_WIDTH : DEFAULT_IMAGE_WIDTH;
         int spriteX = anchor == Anchor.XP ? 68 : 0;
         int spriteY = anchor == Anchor.XP ? 40 : 0;
+
+        //Originals: guiHelper.blit(TEXTURE, barX, barY, spriteX, spriteY, imageWidth, IMAGE_HEIGHT, 256, 256);
+        //guiHelper.blit(TEXTURE, barX, barY, spriteX, spriteY + IMAGE_HEIGHT, (int) (imageWidth * Math.min((mana / (double) maxMana), 1)), IMAGE_HEIGHT);
+
+        //Attempted changes: guiHelper.blit((TEXTURE, RenderType.cutout()) ,TEXTURE, barX, barY, spriteX, spriteY, imageWidth, IMAGE_HEIGHT, 256, 256);
+        //guiHelper.blit(TEXTURE ,TEXTURE, barX, barY, spriteX, spriteY, imageWidth, IMAGE_HEIGHT, 256, 256);
+
+
         int textX, textY;
         String manaFraction = (mana) + "/" + maxMana;
+        //different attempts to make the mana bar
+        guiHelper.blitInscribed(TEXTURE, barX, barY, spriteX, spriteY, imageWidth, IMAGE_HEIGHT);
+        guiHelper.hLine(RenderType.solid(), barX+1, barX+mana, barY+1, 100);
+        guiHelper.fill(barX, barY, barX+mana, barY+50, 100);
 
         textX = ClientConfigs.MANA_TEXT_X_OFFSET.get() + barX + imageWidth / 2 - (int) ((("" + mana).length() + 0.5) * CHAR_WIDTH);
         textY = ClientConfigs.MANA_TEXT_Y_OFFSET.get() + barY + (anchor == Anchor.XP ? ICON_ROW_HEIGHT / 3 : ICON_ROW_HEIGHT);
@@ -80,32 +95,23 @@ public class ManaBarOverlay implements LayeredDraw.Layer {
         }
     }
 
+
+
+
     public static boolean shouldShowManaBar(Player player) {
         return (true);
 
     }
 
     private static int getBarX(Anchor anchor, int screenWidth) {
-        if (anchor == Anchor.XP)
-            return screenWidth / 2 - 91 - 3; //Vanilla's Pos - 3
-        if (anchor == Anchor.Hunger || anchor == Anchor.Center)
-            return screenWidth / 2 - DEFAULT_IMAGE_WIDTH / 2 + (anchor == Anchor.Center ? 0 : HUNGER_BAR_OFFSET);
-        else if (anchor == Anchor.TopLeft || anchor == Anchor.BottomLeft)
-            return SCREEN_BORDER_MARGIN;
-        else return screenWidth - SCREEN_BORDER_MARGIN - DEFAULT_IMAGE_WIDTH;
+        return screenWidth / 2 - 91 - 3; //Vanilla's Pos - 3
+
 
     }
 
     private static int getBarY(Anchor anchor, int screenHeight, Gui gui) {
-        if (anchor == Anchor.XP)
-            return screenHeight - 32 + 3 - 7; //Vanilla's Pos - 7
-        if (anchor == Anchor.Hunger)
-            return screenHeight - (getAndIncrementRightHeight(gui) - 2) - IMAGE_HEIGHT / 2;
-        if (anchor == Anchor.Center)
-            return screenHeight - HOTBAR_HEIGHT - (int) (ICON_ROW_HEIGHT * 2.5f) - IMAGE_HEIGHT / 2 - (Math.max(gui.rightHeight, gui.leftHeight) - 49);
-        if (anchor == Anchor.TopLeft || anchor == Anchor.TopRight)
-            return SCREEN_BORDER_MARGIN;
-        return screenHeight - SCREEN_BORDER_MARGIN - IMAGE_HEIGHT;
+        return screenHeight - 32 + 3 - 7; //Vanilla's Pos - 7
+
 
     }
 
