@@ -122,6 +122,8 @@ public class MaxsMagicMod
     {
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES){
             event.accept(ModItems.WAND);
+            event.accept(ModItems.WAND2);
+            event.accept(ModItems.WAND3);
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
             event.accept(EXAMPLE_BLOCK_ITEM);
