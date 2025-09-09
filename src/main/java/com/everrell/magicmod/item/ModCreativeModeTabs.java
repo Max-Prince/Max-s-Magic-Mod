@@ -20,6 +20,8 @@ public static final Supplier<CreativeModeTab> CREATIVE_WANDS_TAB = CREATIVE_MODE
                 .displayItems((itemDisplayParameters, output) -> {
                     output.accept(ModItems.WAND);
                     output.accept(ModItems.WAND2);
+                    output.accept(ModItems.WAND3);
+                    output.accept(ModItems.SACRIFICIALDAGGER);
                         }
 
                 )

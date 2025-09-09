@@ -1,12 +1,13 @@
-package com.everrell.magicmod.api.mana;
+package com.everrell.magicmod.api.magic;
 
+import com.everrell.magicmod.api.mana.ManaData;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 
 import static com.everrell.magicmod.api.attribute.AttributeRegistry.MANA_REGEN;
 import static com.everrell.magicmod.api.attribute.AttributeRegistry.MAX_MANA;
 
-public class MagicManager {
+public class MagicManager implements IMagicManager {
     public static final int MANA_REGEN_TICKS = 10;
     public static final int CONTINUOUS_CAST_TICK_INTERVAL = 10;
 

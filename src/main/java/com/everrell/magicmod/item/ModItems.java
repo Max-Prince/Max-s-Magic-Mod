@@ -3,6 +3,7 @@ package com.everrell.magicmod.item;
 import com.everrell.magicmod.MaxsMagicMod;
 import com.everrell.magicmod.item.advanceditems.BreakingWandItem;
 import com.everrell.magicmod.item.advanceditems.EnderWandItem;
+import com.everrell.magicmod.item.advanceditems.SacrificialDaggerItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
@@ -19,12 +20,15 @@ public class ModItems {
     public static final DeferredItem<Item> WAND =
             ITEMS.register("wand.json", ()->new Item(new Item.Properties().durability(100).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:wand")))));
 
-    public static final DeferredItem<Item> WAND2 = ITEMS.register("breakingwand",
-            ITEMS.register("breakingwand.json", () -> new BreakingWandItem(new Item.Properties().durability(32).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:breakingwand"))))));
+    public static final DeferredItem<Item> WAND2 =
+            ITEMS.register("breakingwand.json", () -> new BreakingWandItem(new Item.Properties().durability(32).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:breakingwand")))));
 
-    public static final DeferredItem<Item> WAND3 = ITEMS.register("enderwand",
-            ITEMS.register("enderwand.json", () -> new EnderWandItem(new Item.Properties().durability(32).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:enderwand")))))
-            );
+    public static final DeferredItem<Item> WAND3 =
+            ITEMS.register("enderwand.json", () -> new EnderWandItem(new Item.Properties().durability(32).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:enderwand")))));
+
+    public static final DeferredItem<Item> SACRIFICIALDAGGER =
+            ITEMS.register("sacrificialdagger.json", () -> new SacrificialDaggerItem(new Item.Properties().durability(32).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:sacrificialdagger")))));
+
     public static void register(IEventBus eventBus)
     {
         ITEMS.register(eventBus);

@@ -62,10 +62,6 @@ public class ManaBarOverlay implements LayeredDraw.Layer {
         barX = getBarX(anchor, screenWidth) + configOffsetX;
         barY = getBarY(anchor, screenHeight, Minecraft.getInstance().gui) - configOffsetY;
 
-        //FIXME: while we do not have to set the texture, we do have to set the shader (mainly for transparency)
-        //RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        //RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        //RenderSystem.setShaderTexture(0, TEXTURE);
 
         guiHelper.fill(barX, barY, barX+mana, barY+50, 100);
 
@@ -85,9 +81,7 @@ public class ManaBarOverlay implements LayeredDraw.Layer {
     }
 
     public static boolean shouldShowManaBar(Player player) {
-        //We show mana if they are holding an item that can cast spells or if their mana is not full
-        var display = ClientConfigs.MANA_BAR_DISPLAY.get();
-        return (display == Display.Always);
+        return (true);
 
     }
 
