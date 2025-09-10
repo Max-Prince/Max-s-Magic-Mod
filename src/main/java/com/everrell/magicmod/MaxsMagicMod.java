@@ -1,10 +1,7 @@
 package com.everrell.magicmod;
 
 import com.everrell.magicmod.api.attribute.AttributeRegistry;
-import com.everrell.magicmod.api.magic.MagicHelper;
-import com.everrell.magicmod.api.magic.MagicManager;
 import com.everrell.magicmod.item.ModItems;
-import com.everrell.magicmod.setup.ModSetup;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.registries.*;
@@ -38,8 +35,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-import static com.everrell.magicmod.api.attribute.AttributeRegistry.ATTRIBUTES;
-
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MaxsMagicMod.MODID)
 public class MaxsMagicMod
@@ -49,7 +44,6 @@ public class MaxsMagicMod
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
     //Adding the ManaManager so that Mana exists?
-    public static MagicManager MAGIC_MANAGER;
 
     public static MinecraftServer MCS;
 
@@ -86,9 +80,6 @@ public class MaxsMagicMod
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public MaxsMagicMod(IEventBus modEventBus, ModContainer modContainer)
     {
-        ModSetup.setup();
-        MAGIC_MANAGER = new MagicManager();
-        MagicHelper.MAGIC_MANAGER = MAGIC_MANAGER;
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -99,7 +90,8 @@ public class MaxsMagicMod
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
         //registering Attributes?
-        ATTRIBUTES.register(modEventBus);
+        AttributeRegistry.register(modEventBus);
+
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MaxsMagicMod) to respond directly to events.
@@ -135,6 +127,7 @@ public class MaxsMagicMod
             event.accept(ModItems.WAND);
             event.accept(ModItems.WAND2);
             event.accept(ModItems.WAND3);
+            event.accept(ModItems.SACRIFICIALDAGGER);
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
             event.accept(EXAMPLE_BLOCK_ITEM);

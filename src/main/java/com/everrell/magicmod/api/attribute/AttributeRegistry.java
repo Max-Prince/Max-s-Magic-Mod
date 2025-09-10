@@ -2,8 +2,10 @@ package com.everrell.magicmod.api.attribute;
 
 import com.everrell.magicmod.MaxsMagicMod;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -21,10 +23,14 @@ public class AttributeRegistry {
         ATTRIBUTES.register(eventBus);
     }
     public static final DeferredHolder<Attribute, Attribute> MAX_MANA = ATTRIBUTES.register("max_mana", () -> (new RangedAttribute("attribute.maxsmagicmod.max_mana", 100.0D, 0.0D, 1000.0D).setSyncable(true)));
+    public static final DeferredHolder<Attribute, Attribute> MANA = ATTRIBUTES.register("mana", () -> (new RangedAttribute("attribute.maxsmagicmod.mana", 100.0D, 0.0D, 1000.0D).setSyncable(true)));
     public static final DeferredHolder<Attribute, Attribute> MANA_REGEN = ATTRIBUTES.register("mana_regen", () -> (new PercentageAttribute("attribute.maxsmagicmod.mana_regen", 1.0D, 0.0D, 100.0D).setSyncable(true)));
     @SubscribeEvent
+
     public static void modifyEntityAttributes(EntityAttributeModificationEvent e) {
         e.getTypes().forEach(entity -> ATTRIBUTES.getEntries().forEach(attribute -> e.add(entity, attribute)));
     }
+
+
 }
 
