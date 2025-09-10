@@ -2,18 +2,29 @@ package com.everrell.magicmod.item.advanceditems;
 
 import com.everrell.magicmod.api.attribute.AttributeModifiers;
 import com.everrell.magicmod.api.attribute.AttributeRegistry;
+import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.w3c.dom.Attr;
+
+import static net.minecraft.world.damagesource.DamageSource.*;
+import static net.minecraft.world.damagesource.DamageTypes.FELL_OUT_OF_WORLD;
+
 
 public class SacrificialDaggerItem extends Item {
     public SacrificialDaggerItem(Item.Properties p_41188_) {
@@ -25,7 +36,8 @@ public class SacrificialDaggerItem extends Item {
             AttributeMap attributes = p_41194_.getAttributes();
             p_41194_.getAttributes().getInstance(AttributeRegistry.MANA).setBaseValue(p_41194_.getAttributes().getValue(AttributeRegistry.MANA) +50);
             p_41194_.displayClientMessage(Component.literal("you have " + p_41194_.getAttributes().getValue(AttributeRegistry.MANA) + " mana"), true);
-
+            //nonfunctioning method that's supposed to hurt the player on right click
+            // p_41194_.hurt(p_41194_.damageSource().wither, 2);
         }
 
 

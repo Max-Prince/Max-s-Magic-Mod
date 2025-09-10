@@ -127,6 +127,9 @@ public class MaxsMagicMod
             event.accept(ModItems.WAND);
             event.accept(ModItems.WAND2);
             event.accept(ModItems.WAND3);
+            event.accept(ModItems.TELEPORTWAND);
+            event.accept(ModItems.HEALINGWAND);
+            event.accept(ModItems.EXPLOSIONWAND);
             event.accept(ModItems.SACRIFICIALDAGGER);
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)

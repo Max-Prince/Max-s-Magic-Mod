@@ -1,9 +1,7 @@
 package com.everrell.magicmod.item;
 
 import com.everrell.magicmod.MaxsMagicMod;
-import com.everrell.magicmod.item.advanceditems.BreakingWandItem;
-import com.everrell.magicmod.item.advanceditems.EnderWandItem;
-import com.everrell.magicmod.item.advanceditems.SacrificialDaggerItem;
+import com.everrell.magicmod.item.advanceditems.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
@@ -28,6 +26,16 @@ public class ModItems {
 
     public static final DeferredItem<Item> SACRIFICIALDAGGER =
             ITEMS.register("sacrificialdagger.json", () -> new SacrificialDaggerItem(new Item.Properties().durability(32).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:sacrificialdagger")))));
+
+    public static final DeferredItem<Item> TELEPORTWAND =
+            ITEMS.register("teleportwand.json", () -> new TeleportWandItem(new Item.Properties().durability(32).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:teleportwand")))));
+
+    public static final DeferredItem<Item> HEALINGWAND =
+            ITEMS.register("healingwand.json", () -> new HealingWandItem(new Item.Properties().durability(32).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:healingwand")))));
+
+    public static final DeferredItem<Item> EXPLOSIONWAND =
+            ITEMS.register("explosionwand.json", () -> new ExplosionWandItem(new Item.Properties().durability(32).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse("maxsmagicmod:explosionwand")))));
+
 
     public static void register(IEventBus eventBus)
     {
