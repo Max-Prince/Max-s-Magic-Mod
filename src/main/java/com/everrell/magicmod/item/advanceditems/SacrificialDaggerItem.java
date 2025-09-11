@@ -1,6 +1,6 @@
 package com.everrell.magicmod.item.advanceditems;
 
-import com.everrell.magicmod.api.attribute.AttributeModifiers;
+
 import com.everrell.magicmod.api.attribute.AttributeRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
@@ -37,7 +37,7 @@ public class SacrificialDaggerItem extends Item {
             p_41194_.getAttributes().getInstance(AttributeRegistry.MANA).setBaseValue(p_41194_.getAttributes().getValue(AttributeRegistry.MANA) +50);
             p_41194_.displayClientMessage(Component.literal("you have " + p_41194_.getAttributes().getValue(AttributeRegistry.MANA) + " mana"), true);
             //nonfunctioning method that's supposed to hurt the player on right click
-            // p_41194_.hurt(p_41194_.damageSource().wither, 2);
+            p_41194_.hurt(null, 2);
         }
 
 

@@ -16,7 +16,7 @@ public class HealingWandItem extends Item {
     }
     public InteractionResult use(Level p_41193_, Player p_41194_, InteractionHand p_41195_) {
         if (p_41193_ instanceof ServerLevel serverlevel) {
-            if (p_41194_.getAttributes().getValue(AttributeRegistry.MANA) > 50) {
+            if (p_41194_.getAttributes().getValue(AttributeRegistry.MANA) >= 50) {
 
                 AttributeMap attributes = p_41194_.getAttributes();
                 p_41194_.getAttributes().getInstance(AttributeRegistry.MANA).setBaseValue(p_41194_.getAttributes().getValue(AttributeRegistry.MANA) - 200);

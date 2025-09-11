@@ -1,6 +1,6 @@
 package com.everrell.magicmod.item.advanceditems;
 
-import com.everrell.magicmod.api.attribute.AttributeModifiers;
+
 import com.everrell.magicmod.api.attribute.AttributeRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;

@@ -19,10 +19,12 @@ public class TeleportWandItem extends Item {
         if (p_41193_ instanceof ServerLevel serverlevel) {
 
             AttributeMap attributes = p_41194_.getAttributes();
-            p_41194_.getAttributes().getInstance(AttributeRegistry.MANA).setBaseValue(p_41194_.getAttributes().getValue(AttributeRegistry.MANA) -50);
-            p_41194_.displayClientMessage(Component.literal("you have " + p_41194_.getAttributes().getValue(AttributeRegistry.MANA) + " mana"), true);
+if(p_41194_.getAttributes().getInstance(AttributeRegistry.MANA).getBaseValue() >= 50){
+            p_41194_.getAttributes().getInstance(AttributeRegistry.MANA).setBaseValue(p_41194_.getAttributes().getValue(AttributeRegistry.MANA) - 50);
 
             p_41194_.teleportTo(p_41194_.pick(50, 1, false).getLocation().x, p_41194_.pick(50, 1, false).getLocation().y, p_41194_.pick(50, 1, false).getLocation().z);
+        }
+            p_41194_.displayClientMessage(Component.literal("you have " + p_41194_.getAttributes().getValue(AttributeRegistry.MANA) + " mana"), true);
             /*
             nonfunctioning teleport method
             p_41194_.setPos(p_41194_.pick(50, 1, false).getLocation());
